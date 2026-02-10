@@ -3,7 +3,7 @@ package com.example.exception.userDefinedException.creditCardTask;
 import com.example.exception.userDefinedException.InvalidAgeException;
 
 public class CashCounter {
-    public void cardPaymentEligibility(String cardNumber) throws InvalidCreditException {
+    public void cardPaymentEligibility(StringBuffer cardNumber) throws InvalidCreditException {
         if (cardNumber.length() != 16) {
             throw new InvalidCreditException("Invalid Credit Card number");
         }
