@@ -62,3 +62,7 @@ Training
 ### 14. Enums  
 - Enum declaration  
 - Usage in control flow
+
+### 15. Localization
+- Creating user defined language packs
+- Providing output in multiple languages
