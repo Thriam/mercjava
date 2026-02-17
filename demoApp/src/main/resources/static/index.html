@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CricketHub - Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f6f5;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a5f2a, #2d8a3e);
+            padding: 15px 0;
+        }
+
+        nav {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #ffd700;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+        }
+
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                        url('https://images.unsplash.com/photo-1505843279827-4b0c18cbd62c');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 700px;
+        }
+
+        .btn {
+            padding: 12px 35px;
+            background: #ffd700;
+            color: #1a5f2a;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 30px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: white;
+        }
+
+        .section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .section h2 {
+            color: #1a5f2a;
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: 40px auto 0;
+        }
+
+        .feature-box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-8px);
+        }
+
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <div class="logo">🏏 Cricket<span>Hub</span></div>
+        <ul>
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="rules.html">Rules</a></li>
+            <li><a href="AboutUs.html">About Us</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Welcome to CricketHub</h1>
+        <p>Your ultimate destination to explore the rules, history, and passion of the Gentleman’s Game.</p>
+        <a href="AboutUs.html" class="btn">Learn More</a>
+    </div>
+</section>
+
+<section class="section">
+    <h2>Why CricketHub?</h2>
+    <div class="features">
+        <div class="feature-box">
+            <h3>📘 Learn the Rules</h3>
+            <p>Understand cricket rules in a simple and easy way.</p>
+        </div>
+        <div class="feature-box">
+            <h3>📖 Discover History</h3>
+            <p>Explore the rich history and traditions of cricket.</p>
+        </div>
+        <div class="feature-box">
+            <h3>🌍 Global Community</h3>
+            <p>Join millions of fans who love the sport worldwide.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2026 CricketHub | The Gentleman’s Game</p>
+</footer>
+
+</body>
+</html>

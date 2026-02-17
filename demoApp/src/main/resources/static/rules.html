@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Rules - CricketHub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        header {
+            background: linear-gradient(135deg, #1a5f2a 0%, #2d8a3e 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo span {
+            color: #ffd700;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #ffd700;
+        }
+        .page-header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect fill="%231a5f2a" width="100" height="100"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        .page-header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        .format-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .format-tab {
+            background: white;
+            border: 2px solid #1a5f2a;
+            color: #1a5f2a;
+            padding: 12px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .format-tab:hover, .format-tab.active {
+            background: #1a5f2a;
+            color: white;
+        }
+        .rule-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        .rule-section h2 {
+            color: #1a5f2a;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .rule-section h2 .icon {
+            font-size: 2rem;
+        }
+        .rule-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .rule-item:last-child {
+            border-bottom: none;
+        }
+        .rule-number {
+            background: #1a5f2a;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        .rule-content h3 {
+            color: #333;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        .rule-content p {
+            color: #666;
+        }
+        .scoring-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .scoring-table th, .scoring-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        .scoring-table th {
+            background: #1a5f2a;
+            color: white;
+        }
+        .scoring-table tr:hover {
+            background: #f9f9f9;
+        }
+        .format-section {
+            display: none;
+        }
+        .format-section.active {
+            display: block;
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border-left: 4px solid #1a5f2a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        .highlight-box h4 {
+            color: #1a5f2a;
+            margin-bottom: 10px;
+        }
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">🏏 Cricket<span>Hub</span></div>
+            <ul>
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="rules.html">Rules</a></li>
+                <li><a href="AboutUs.html">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <section class="page-header">
+        <h1>Cricket Rules</h1>
+        <p>Understanding the fundamentals of the gentleman's game</p>
+    </section>
+
+    <div class="container">
+        <div class="format-tabs">
+            <button class="format-tab active" onclick="showFormat('test')">Test Cricket</button>
+            <button class="format-tab" onclick="showFormat('odi')">ODI</button>
+            <button class="format-tab" onclick="showFormat('t20')">T20</button>
+        </div>
+
+        <div id="test" class="format-section active">
+            <div class="rule-section">
+                <h2><span class="icon">🎯</span> Test Cricket Basics</h2>
+                <div class="highlight-box">
+                    <h4>Match Duration</h4>
+                    <p>Test matches last up to 5 days, with each team batting twice (two innings each). Each day's play consists of 3 sessions of about 2 hours each.</p>
+                </div>
+                
+                <div class="rule-item">
+                    <div class="rule-number">1</div>
+                    <div class="rule-content">
+                        <h3>Teams</h3>
+                        <p>Each team has 11 players. There are two teams: the batting team and the fielding team.</p>
+                    </div>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-number">2</div>
+                    <div class="rule-content">
+                        <h3>The Pitch</h3>
+                        <p>A rectangular 22-yard (20.12m) strip in the center of the field. The pitch has three stumps at each end.</p>
+                    </div>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-number">3</div>
+                    <div class="rule-content">
+                        <h3>Wickets</h3>
+                        <p>Three wooden stumps topped with two bails. If all three bails are dislodged, the batsman is "out".</p>
+                    </div>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-number">4</div>
+                    <div class="rule-content">
+                        <h3>Overs</h3>
+                        <p>An over consists of 6 legal deliveries bowled by one bowler. The bowler changes ends after each over.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rule-section">
+                <h2><span class="icon">🏃</span> How to Score Runs</h2>
+                <table class="scoring-table">
+                    <tr>
+                        <th>Run Type</th>
+                        <th>Description</th>
+                        <th>Value</th>
+                    </tr>
+                    <tr>
+                        <td>Run</td>
+                        <td>Both batsmen run to opposite ends</td>
+                        <td>1-6 runs</td>
+                    </tr>
+                    <tr>
+                        <td>Four</td>
+                        <td>Ball touches boundary after hitting ground</td>
+                        <td>4 runs</td>
+                    </tr>
+                    <tr>
+                        <td>Six</td>
+                        <td>Ball crosses boundary without touching ground</td>
+                        <td>6 runs</td>
+                    </tr>
+                    <tr>
+                        <td>Bye</td>
+                        <td>Runs off delivery without bat contact</td>
+                        <td>1+ runs</td>
+                    </tr>
+                    <tr>
+                        <td>Leg Bye</td>
+                        <td>Runs off body without bat contact</td>
+                        <td>1+ runs</td>
+                    </tr>
+                    <tr>
+                        <td>No Ball</td>
+                        <td>Illegal delivery (overstepping, height, etc.)</td>
+                        <td>1 run + free hit</td>
+                    </tr>
+                    <tr>
+                        <td>Wide Ball</td>
+                        <td>Delivery too wide for batsman</td>
+                        <td>1 run + re-bowl</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="rule-section">
+                <h2><span class="icon">❌</span> Ways to Get Out</h2>
+                <div class="rule-item">
+                    <div class="rule-number">1</div>
+                    <div class="rule-content">
+                        <h3>Caught</h3>
+                        <p>Batsman hits the ball and it's caught by a fielder before touching ground.</p>
+                    </div>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-number">2</div>
+                    <div class="rule-content">
+                        <h3>Bowled</h3>
+                        <p>Ball hits the stumps and dislodges the bails.</p>
+                    </div>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-number">3</div>
+                    <div class="rule-content">
+                        <h3>Leg Before Wicket (LBW)</h3>
+                        <p>Ball would have hit stumps and batsman didn't offer a shot.</p>
+                    </div>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-number">4</div>
+                    <div class="rule-content">
+                        <h3>Run Out</h3>
+                        <p>Fielding team dislodges bails while batsman is out of crease.</p>
+                    </div>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-number">5</div>
+                    <div class="rule-content">
+                        <h3>Stumped</h3>
+                        <p>Wicketkeeper dislodges bails while batsman is out of crease.</p>
+                    </div>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-number">6</div>
+                    <div class="rule-content">
+                        <h3>Hit Wicket</h3>
+                        <p>Batsman dislodges bails with bat or body while playing.</p>
+                    </div>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-number">7</div>
+                    <div class="rule-content">
+                        <h3>Timed Out</h3>
+                        <p>New batsman fails to arrive within 3 minutes.</p>
+                    </div>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-number">8</div>
+                    <div class="rule-content">
+                        <h3>Obstructing the Field</h3>
+                        <p>Batsman deliberately obstructs fielders.</p>
+                    </div>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-number">9</div>
+                    <div class="rule-content">
+                        <h3>Hit the Ball Twice</h3>
+                        <p>Batsman hits ball twice intentionally.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="odi" class="format-section">
+            <div class="rule-section">
+                <h2><span class="icon">🎯</span> ODI Cricket Basics</h2>
+                <div class="highlight-box">
+                    <h4>Match Duration</h4>
+                    <p>One Day International (ODI) matches consist of 50 overs per side, typically lasting 6-8 hours.</p>
+                </div>
+                
+                <div class="rule-item">
+                    <div class="rule-number">1</div>
+                    <div class="rule-content">
+                        <h3>Overs per Innings</h3>
+                        <p>Each team gets 50 overs to bat. An over consists of 6 legal deliveries.</p>
+                    </div>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-number">2</div>
+                    <div class="rule-content">
+                        <h3>Powerplay</h3>
+                        <p>First 10 overs - only 2 fielders allowed outside 30-yard circle. Overs 11-40: 4 fielders outside. Last 10 overs: 5 fielders outside.</p>
+                    </div>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-number">3</div>
+                    <div class="rule-content">
+                        <h3>Follow-on</h3>
+                        <p>In tests, trailing team may be forced to bat again if they trail by 200+ runs (after 1st innings).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="t20" class="format-section">
+            <div class="rule-section">
+                <h2><span class="icon">🎯</span> T20 Cricket Basics</h2>
+                <div class="highlight-box">
+                    <h4>Match Duration</h4>
+                    <p>Twenty20 (T20) matches consist of 20 overs per side, typically lasting about 3 hours. The fastest format!</p>
+                </div>
+                
+                <div class="rule-item">
+                    <div class="rule-number">1</div>
+                    <div class="rule-content">
+                        <h3>Overs per Innings</h3>
+                        <p>Each team gets 20 overs to bat. Maximum 4 overs per bowler.</p>
+                    </div>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-number">2</div>
+                    <div class="rule-content">
+                        <h3>Fielding Restrictions</h3>
+                        <p>First 6 overs: Maximum 2 fielders outside 30-yard circle. Overs 7-20: Maximum 5 fielders outside.</p>
+                    </div>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-number">3</div>
+                    <div class="rule-content">
+                        <h3>Free Hit</h3>
+                        <p>After a no-ball, the next delivery is a free hit where the batsman cannot be dismissed except run out.</p>
+                    </div>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-number">4</div>
+                    <div class="rule-content">
+                        <h3>Strategic Timeout</h2>
+                        <p>Each team gets one 60-90 second timeout (mandatory in some leagues).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy 2026 CricketHub - Celebrating the Gentleman's Game</p>
+    </footer>
+
+    <script>
+        function showFormat(format) {
+            document.querySelectorAll('.format-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.querySelectorAll('.format-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(format).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
