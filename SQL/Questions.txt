@@ -1,0 +1,7 @@
+Query1: Find all customers who belong to India.
+
+Query2: Display category name and total films.
+
+Query3: Display the 5 longest films.
+
+Query4: Display customer name and total payment.
