@@ -5,8 +5,8 @@ import com.example.repository.LaptopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/laptop")
@@ -17,42 +17,35 @@ public class LaptopController {
     public void add(@RequestBody Laptop lp) {
         lr.save(lp);
     }
-/*
-    @GetMapping("/findById/{id}")
-    public Laptop findById(@PathVariable int id) {
-        return laptopList.stream()
-                .filter(laptop -> laptop.getId() == id)
-                .findFirst()
-                .orElse(null);
+
+    @GetMapping("/list")
+    public List<Laptop> list() {
+        return lr.findAll();
     }
 
-    @GetMapping("/findByName/{name}")
-    public Laptop findByName(@PathVariable String name) {
-        return laptopList.stream()
-                .filter(laptop -> laptop.getName().equalsIgnoreCase(name))
-                .findFirst()
-                .orElse(null);
+    @GetMapping("/findOne/{index}")
+    public Optional<Laptop> findOne(@PathVariable int index) {
+        return lr.findById(index);
     }
 
-    @PostMapping("/addLaptop")
-    public void add(@RequestBody Laptop laptop) {
-        laptopList.add(laptop);
+    @PutMapping("/update/{index}")
+    public Laptop update(@PathVariable int index, @RequestBody Laptop newLaptop) {
+        Optional<Laptop> oldLaptop = lr.findById(index);
+        oldLaptop.get().setName(newLaptop.getName());
+        oldLaptop.get().setBrand(newLaptop.getBrand());
+        oldLaptop.get().setPrice(newLaptop.getPrice());
+        oldLaptop.get().setRAM(newLaptop.getRAM());
+        lr.save(oldLaptop.get());
+        return oldLaptop.get();
     }
 
-    @PutMapping("/updateLaptop/{id}")
-    public String update(@PathVariable int id, @RequestBody Laptop updatedLaptop) {
-        for (int i = 0; i < laptopList.size(); i++) {
-            if (laptopList.get(i).getId() == id) {
-                laptopList.set(i, updatedLaptop);
-                return "Laptop updated successfully";
-            }
-        }
-        return "Laptop not found";
+    @DeleteMapping("/delete/{index}")
+    public void delete(@PathVariable int index) {
+        lr.deleteById(index);
     }
 
-    @DeleteMapping("/deleteLaptop/{id}")
-    public void delete(@PathVariable int id) {
-        laptopList.removeIf(laptop -> laptop.getId() == id);
+    @GetMapping("/findByBrand/{brand}")
+    public List<Laptop> findByBrandName(@PathVariable String brand) {
+        return lr.findByBrand(brand);
     }
- */
 }
