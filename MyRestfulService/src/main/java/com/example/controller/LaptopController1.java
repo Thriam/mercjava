@@ -1,23 +1,21 @@
 package com.example.controller;
 
 import com.example.model.Laptop;
-import com.example.repository.LaptopRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/laptop")
-public class LaptopController {
-    @Autowired
-    LaptopRepository lr;
-    @PostMapping("/add")
-    public void add(@RequestBody Laptop lp) {
-        lr.save(lp);
+@RequestMapping("/laptop1")
+public class LaptopController1 {
+    List<Laptop> laptopList = new ArrayList<>();
+
+    @GetMapping("/listLaptops")
+    public List<Laptop> list() {
+        return laptopList;
     }
-/*
+
     @GetMapping("/findById/{id}")
     public Laptop findById(@PathVariable int id) {
         return laptopList.stream()
@@ -54,5 +52,4 @@ public class LaptopController {
     public void delete(@PathVariable int id) {
         laptopList.removeIf(laptop -> laptop.getId() == id);
     }
- */
 }
