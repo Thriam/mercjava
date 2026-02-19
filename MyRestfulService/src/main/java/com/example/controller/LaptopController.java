@@ -1,21 +1,27 @@
 package com.example.controller;
 
+import com.example.exceptions.ResourceNotFoundException;
 import com.example.model.Laptop;
 import com.example.repository.LaptopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/laptop")
 public class LaptopController {
+
     @Autowired
-    LaptopRepository lr;
+    private LaptopRepository lr;
+
     @PostMapping("/add")
-    public void add(@RequestBody Laptop lp) {
-        lr.save(lp);
+    public ResponseEntity<Laptop> add(@RequestBody Laptop lp) {
+        Laptop savedLaptop = lr.save(lp);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedLaptop);
     }
 
     @GetMapping("/list")
@@ -24,24 +30,41 @@ public class LaptopController {
     }
 
     @GetMapping("/findOne/{index}")
-    public Optional<Laptop> findOne(@PathVariable int index) {
-        return lr.findById(index);
+    public ResponseEntity<Laptop> findOne(@PathVariable int index) {
+        Laptop lt = lr.findById(index)
+                .orElseThrow(() -> new ResourceNotFoundException("Laptop not found with id: " + index));
+        return ResponseEntity.ok(lt);
     }
 
     @PutMapping("/update/{index}")
-    public Laptop update(@PathVariable int index, @RequestBody Laptop newLaptop) {
-        Optional<Laptop> oldLaptop = lr.findById(index);
-        oldLaptop.get().setName(newLaptop.getName());
-        oldLaptop.get().setBrand(newLaptop.getBrand());
-        oldLaptop.get().setPrice(newLaptop.getPrice());
-        oldLaptop.get().setRAM(newLaptop.getRAM());
-        lr.save(oldLaptop.get());
-        return oldLaptop.get();
+    public ResponseEntity<Laptop> update(@PathVariable int index, @RequestBody Laptop newLaptop) {
+        Laptop oldLaptop = lr.findById(index)
+                .orElseThrow(() -> new ResourceNotFoundException("Laptop not found with id: " + index));
+
+        oldLaptop.setName(newLaptop.getName());
+        oldLaptop.setBrand(newLaptop.getBrand());
+        oldLaptop.setPrice(newLaptop.getPrice());
+        oldLaptop.setRAM(newLaptop.getRAM());
+
+        Laptop updatedLaptop = lr.save(oldLaptop);
+        return ResponseEntity.ok(updatedLaptop);
     }
 
     @DeleteMapping("/delete/{index}")
-    public void delete(@PathVariable int index) {
-        lr.deleteById(index);
+    public ResponseEntity<String> delete(@PathVariable int index) {
+        try {
+            lr.deleteById(index);
+            return ResponseEntity.ok("Laptop deleted successfully with id: " + index);
+        } catch (EmptyResultDataAccessException e) {
+            throw new ResourceNotFoundException("Laptop not found with id: " + index);
+        }
+    }
+
+    @GetMapping("/findById")
+    public ResponseEntity<Laptop> getById(@RequestParam("id") Integer id) {
+        Laptop laptop = lr.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Laptop not found with id: " + id));
+        return ResponseEntity.ok(laptop);
     }
 
     @GetMapping("/findByBrand/{brand}")
