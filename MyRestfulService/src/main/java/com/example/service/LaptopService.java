@@ -15,7 +15,7 @@ public class LaptopService {
     @Autowired
     LaptopRepository lr;
     public void addlaptop(@RequestBody Laptop lp)
-    {        //list.add("Surya");
+    {        //list.add("Dhoni");
         lr.save(lp);
     }
     public List<Laptop> listLaptop()
