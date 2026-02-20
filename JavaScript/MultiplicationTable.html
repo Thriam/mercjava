@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Multiplication Table</title>
+</head>
+<body>
+    <h1>Multiplication Table</h1>
+    
+    <div class="controls">
+        <label for="rows">Rows:</label>
+        <input type="number" id="rows" value="10" min="1" max="20">
+        
+        <label for="cols">Columns:</label>
+        <input type="number" id="cols" value="10" min="1" max="20">
+        
+        <button onclick="updateTable()">Generate Table</button>
+    </div>
+    
+    <div id="tableContainer"></div>
+    
+    <script src="multiplication.js"></script>
+    <script>
+        function updateTable() {
+            const rows = parseInt(document.getElementById('rows').value) || 10;
+            const cols = parseInt(document.getElementById('cols').value) || 10;
+            displayMultiplicationTable('tableContainer', rows, cols);
+        }
+    </script>
+</body>
+</html>
