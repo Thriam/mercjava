@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController // it exposes data and service in the form of JSON/XML
 @RequestMapping("/laptop")
+@CrossOrigin("*")
 public class LaptopController {
     @Autowired
     LaptopService lr;

@@ -26,7 +26,7 @@ public class LaptopService {
     {
         return lr.findById(index);
     }
-    public Laptop updateLaptop(@PathVariable int index,@RequestBody Laptop newLaptop)
+    public Laptop updateLaptop(@PathVariable int index, @RequestBody Laptop newLaptop)
     {
         Optional<Laptop> oldLaptop=lr.findById(index);
         oldLaptop.get().setName(newLaptop.getName());
